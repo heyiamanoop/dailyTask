@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dailyTask</title>
+
+</head>
+
+
+<body>
+
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+    </style>
+
+    <h1>Track your daily task here</h1>
+    <p>Add a new Task</p>
+    <input type="text" id="inputTask" placeholder="Enter your task here...">
+    <button id="btn">Add Task</button>
+    <ul id="taskList"></ul>
+
+
+
+
+    <script>
+  const input = document.getElementById('inputTask');
+  const btn = document.getElementById('btn');
+  const list = document.getElementById('taskList');
+
+  btn.addEventListener('click', () => {
+    const taskText = input.value.trim();
+
+    if (taskText !== "") {
+      const li = document.createElement('li');
+      li.textContent = taskText;
+
+      // ✅ Delete button
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = ' ❌';
+      deleteBtn.onclick = () => li.remove();
+      li.appendChild(deleteBtn);
+
+      // ✅ Toggle complete
+      li.addEventListener('click', (e) => {
+        // Prevent toggle when delete is clicked
+        if (e.target.tagName !== 'BUTTON') {
+          li.classList.toggle('completed');
+        }
+      });
+
+      list.appendChild(li);
+      input.value = "";
+    }
+  });
+</script>
+
+</body>
+</html>
