@@ -1,29 +1,59 @@
 const input = document.getElementById('inputTask');
-  const btn = document.getElementById('btn');
-  const list = document.getElementById('taskList');
+const btn = document.getElementById('btn');
+const list = document.getElementById('taskList');
 
-  btn.addEventListener('click', () => {
-    const taskText = input.value.trim();
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    if (taskText !== "") {
-      const li = document.createElement('li');
-      li.textContent = taskText;
+// Function to save to localStorage
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
-      // ✅ Delete button
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = ' ❌';
-      deleteBtn.onclick = () => li.remove();
-      li.appendChild(deleteBtn);
+// Function to render tasks
+function renderTasks() {
+  list.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement('li');
+    li.textContent = task.text;
 
-      // ✅ Toggle complete
-      li.addEventListener('click', (e) => {
-        // Prevent toggle when delete is clicked
-        if (e.target.tagName !== 'BUTTON') {
-          li.classList.toggle('completed');
-        }
-      });
-
-      list.appendChild(li);
-      input.value = "";
+    if (task.completed) {
+      li.classList.add('completed');
     }
+
+    // Toggle complete
+    li.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'BUTTON') {
+        tasks[index].completed = !tasks[index].completed;
+        saveTasks();
+        renderTasks();
+      }
+    });
+
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '❌';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', () => {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
+    });
+
+    li.appendChild(deleteBtn);
+    list.appendChild(li);
   });
+}
+
+// Add task
+btn.addEventListener('click', () => {
+  const taskText = input.value.trim();
+  if (taskText !== "") {
+    tasks.push({ text: taskText, completed: false });
+    saveTasks();
+    renderTasks();
+    input.value = "";
+  }
+});
+
+// Initial render on page load
+renderTasks();

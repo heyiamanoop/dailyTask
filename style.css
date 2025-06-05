@@ -1,4 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #217d8a, #ffffff);
+}
+
+main {
+  padding: 1rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #1b6c7e, #4ccdee);
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.input-group input {
+  flex: 1;
+  min-width: 200px;
+}
+
+input,
+button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+input {
+  width: 70%;
+}
+
+button {
+  background-color: #fff;
+  color: #1b6c7e;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d1f0ff;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  color: white;
+  cursor: pointer;
+}
+
+li:hover {
+  opacity: 0.9;
+}
+
+
+#taskList li:nth-child(odd) {
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+}
+
+#taskList li:nth-child(even) {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+}
+
 .completed {
-    text-decoration: line-through;
-    color: gray;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.delete-btn {
+  all: unset; /* remove inherited button styles */
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+  color: #ff4c4c;
+}
+
+
+
+
+@media (max-width: 391px) {
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: -0.3rem;
+    background: linear-gradient(to right, #f071cc, #a6c1ee);
+  }
 }

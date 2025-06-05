@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dailyTask</title>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Task Tracker</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
-
 <body>
-
-    <h1>Track your daily task here</h1>
-    <p>Add a new Task</p>
-    <input type="text" id="inputTask" placeholder="Enter your task here...">
-    <button id="btn">Add Task</button>
-    <ul id="taskList"></ul>
-
+    <main>
+        <h1>Track your daily task here</h1>
+        <p>Add a new Task</p>
+        <div class="input-group">
+            <input type="text" id="inputTask" placeholder="Enter your task here..." />
+            <button id="btn">Add Task</button>
+        </div>
+        <ul id="taskList"></ul>
+    </main>
+    <script src="script.js"></script>
 </body>
+
 </html>
